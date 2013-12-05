@@ -1,4 +1,4 @@
-import pygame, random, sys 
+import pygame, random, sys
 from pygame.locals import *
 
 
@@ -10,10 +10,11 @@ def collide(x1, x2, y1, y2, w1, w2, h1, h2):                    #Collision funct
 	
 	
 def die(screen, score):
-	font=pygame.font.SysFont('Comic Sans', 30)
+	font=pygame.font.SysFont('Arial', 30)
 	text=font.render('Your score was: '+str(score), True, (0, 0, 0))
 	screen.blit(text, (10, 270))
 	pygame.display.update()
+	pygame.time.wait(2000)
 	sys.exit(0)
 	
 xs = [290, 290, 290, 290, 290]                                  #These seem to be the different cooridinates of each snake segment
@@ -27,7 +28,7 @@ seg = pygame.Surface((20, 20))                                  #Snake segment
 seg.fill((0, 255, 50))
 
 pygame.init()
-font = pygame.font.SysFont('Comic Sans', 20)
+font = pygame.font.SysFont('Arial', 20)
 clock = pygame.time.Clock()
 
 display=pygame.display.set_mode((600, 600))
