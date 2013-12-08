@@ -21,11 +21,19 @@ xs = [290, 290, 290, 290, 290]                                  #These seem to b
 ys = [290, 270, 250, 230, 210]
 
 direction, score = 0, 0
-fruit_pos = (random.randint(0, 590), random.randint(0, 590))
+fruit_pos = (random.randint(0, 590), random.randint(0, 590))     #1st fruit       
 fruit_image = pygame.Surface((10, 10))
 fruit_image.fill((255, 0, 0))
+slowfruit_pos = (random.randint(0, 590), random.randint(0, 590)) #2nd fruit
+slowfruit_image = pygame.Surface((10, 10))
+slowfruit_image.fill((0, 51, 255))
+fastfruit_pos = (random.randint(0, 590), random.randint(0, 590)) #3rd fruit
+fastfruit_image = pygame.Surface((10, 10))
+fastfruit_image.fill((0, 51, 255))
+
+
 seg = pygame.Surface((20, 20))                                  #Snake segment
-seg.fill((0, 255, 50))
+seg.fill((128, 0, 255))
 
 pygame.init()
 font = pygame.font.SysFont('Arial', 20)
@@ -74,7 +82,7 @@ while True:
 	elif direction==1: ys[0] -= 20
 	elif direction==2: xs[0] -= 20
 	elif direction==3: ys[0] += 20	
-	display.fill((255, 255, 255))	                        #background
+	display.fill((255, 228, 122))	                        #background
 	for i in range(0, len(xs)):                             #print segments to screen
 		display.blit(seg, (xs[i], ys[i]))
 	display.blit(fruit_image, fruit_pos)
