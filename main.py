@@ -30,22 +30,27 @@ def die(screen, score):
         sys.exit(0)
 
 def game():
+        scoremultiplier=1
         xs = [290, 290, 290, 290, 290]                                          #These seem to be the different cooridinates of each snake segment
         ys = [290, 270, 250, 230, 210]
 
         direction, score = 0, 0
 
-        fruit_pos = (random.randint(0, 590), random.randint(0, 590))            #1st fruit
+        fruit_pos = (random.randint(0, 590), random.randint(0, 590))            #normal fruit
         fruit_image = pygame.Surface((10, 10))
         fruit_image.fill((255, 0, 0))
 
-        slowfruit_pos = (random.randint(0, 590), random.randint(0, 590))        #2nd fruit
+        slowfruit_pos = (random.randint(0, 590), random.randint(0, 590))        #slow fruit
         slowfruit_image = pygame.Surface((10, 10))
         slowfruit_image.fill((0, 51, 255))
 
-        fastfruit_pos = (random.randint(0, 590), random.randint(0, 590))        #3rd fruit
+        fastfruit_pos = (random.randint(0, 590), random.randint(0, 590))        #fast fruit
         fastfruit_image = pygame.Surface((10, 10))
         fastfruit_image.fill((0, 51, 255))
+
+        discofruit_pos = (random.randint(0, 590), random.randint(0, 590))        #disco fruit
+        discofruit_image = pygame.Surface((10, 10))
+        discofruit_image.fill((255, 0, 255))        
 
 
         seg = pygame.Surface((20, 20))                                          #Snake segment
@@ -79,19 +84,24 @@ def game():
 
                                                                                 #If Snake collides with the fruit, add a segment
                 if collide(xs[0], fruit_pos[0], ys[0], fruit_pos[1], 20, 10, 20, 10):
-                        score+=1
+                        score+=(1*scoremultiplier)
                         xs.append(700)
                         ys.append(700)
                         fruit_pos=(random.randint(0,590),random.randint(0,590))
 
                                                                                 #If Snake collides with special fruit, give points and slow/speed game
                 if collide(xs[0], fastfruit_pos[0], ys[0], fastfruit_pos[1], 20, 10, 20, 10):
-                        score+=3
+                        scoremultiplier=scoremultiplier*2
                         fastfruit_pos=(random.randint(0,590),random.randint(0,590))
                         slowfruit_pos=(random.randint(0,590),random.randint(0,590))
 
+                if collide(xs[0], discofruit_pos[0], ys[0], discofruit_pos[1], 20, 10, 20, 10):
+                        scoremultiplier=scoremultiplier*2
+                        
+                        
+
                 if collide(xs[0], slowfruit_pos[0], ys[0], slowfruit_pos[1], 20, 10, 20, 10):
-                        score+=2
+                        scoremultiplier=scoremultiplier/2
                         fastfruit_pos=(random.randint(0,590),random.randint(0,590))
                         slowfruit_pos=(random.randint(0,590),random.randint(0,590))
                                                                                 #If snake hits the borders
