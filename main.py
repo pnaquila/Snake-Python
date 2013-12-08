@@ -20,7 +20,7 @@ def die(screen, score):
         text=font.render('Press Enter to Play Again', True, (0, 0, 0))
         screen.blit(text, (width//3, height//2))
         pygame.display.update()
-        pygame.time.wait(3000)
+        pygame.time.wait(5000)
 
         for event in pygame.event.get():
                 if event.type ==KEYDOWN and event.key==K_RETURN:
@@ -74,7 +74,7 @@ def game():
 
                                                                                 #Check if the snake collides with itself
                         if collide(xs[0], xs[i], ys[0], ys[i], 20, 20, 20, 20):
-                                die(s, score)
+                                die(display, score)
                         i-= 1
 
                                                                                 #If Snake collides with the fruit, add a segment
